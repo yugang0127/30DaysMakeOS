@@ -29,22 +29,34 @@
 ; 程序主体
 
 entry:
-		MOV	AX, 0         	 ; 初始化寄存器
+		MOV		AX,0         ; 初始化寄存器
+		MOV		SS,AX
+		MOV		SP,0x7c00
+		MOV		DS,AX
+		MOV		ES,AX
 
+		MOV		SI,msg
 putloop:
+		MOV		AL,[SI]
+		ADD		SI,1		; 给SI加1
+		CMP		AL,0
 
+		JE		fin
+		MOV		AH,0x0e		; 显示一个文子
+		MOV		BX,15		; 指定字符颜色
+		INT		0x10		; 调用显卡BIOS
+		JMP		putloop
 fin:
+		HLT					; 让CPU停止，等待指令
+		JMP		fin			; 无限循环
 
-msg:
-
-; 信息显示部分
-	
+msg:	
 		DB	0x0a, 0x0a		 ; 2个换行
 		DB	"hello,YuWan and CuMian"
 		DB	0x0a			 ; 换行
 		DB	0
 
-		RESB 0x1fe-$
+		RESB 0x7dfe-$
 
 		DB	0x55, 0xaa
 
