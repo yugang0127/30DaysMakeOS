@@ -1,4 +1,4 @@
-text size :   3266(0x00CC2)
+text size :   3335(0x00D07)
 data size :   4508(0x0119C)
 bss  size :      0(0x00000)
 
@@ -34,21 +34,21 @@ bss  size :      0(0x00000)
 0x00000562 : _putblock8_8
 0x000005B8 : _init_gdtidt
 0x000005B8 : (.text)
-0x00000651 : _set_segmdesc
-0x0000069B : _set_gatedesc
-0x000006C7 : _init_pic
-0x000006C7 : (.text)
-0x0000075C : _inthandler21
-0x000007A7 : _inthandler2c
-0x000007F2 : _inthandler27
-0x00000800 : (.text)
-0x00000800 : _HariStartup
-0x00000809 : _sprintf
-0x00000809 : (.text)
-0x0000081D : (.text)
-0x00000859 : _strtoul0
-0x0000092C : (.text)
-0x00000954 : _vsprintf
+0x00000696 : _set_segmdesc
+0x000006E0 : _set_gatedesc
+0x0000070C : _init_pic
+0x0000070C : (.text)
+0x000007A1 : _inthandler21
+0x000007EC : _inthandler2c
+0x00000837 : _inthandler27
+0x00000845 : (.text)
+0x00000845 : _HariStartup
+0x0000084E : _sprintf
+0x0000084E : (.text)
+0x00000862 : (.text)
+0x0000089E : _strtoul0
+0x00000971 : (.text)
+0x00000999 : _vsprintf
 0x00000000 : (.data)
 0x00000000 : (.data)
 0x00000000 : (.data)

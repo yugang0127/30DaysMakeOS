@@ -1,20 +1,20 @@
 ; naskfunc
 ; TAB=4
 
-[FORMAT "WCOFF"]				; オブジェクトファイルを作るモード	
-[INSTRSET "i486p"]				; 486の命令まで使いたいという記述
-[BITS 32]						; 32ビットモード用の機械語を作らせる
-[FILE "naskfunc.nas"]			; ソースファイル名情報
+[FORMAT "WCOFF"]				; 制作目标文件的模式
+[INSTRSET "i486p"]				; 这个程序是给486用的哦	
+[BITS 32]						; 制作32位模式用的机械语言
+[FILE "naskfunc.nas"]			; 源文件名信息
 
-		GLOBAL	_io_hlt, _io_cli, _io_sti, _io_stihlt
-		GLOBAL	_io_in8,  _io_in16,  _io_in32
-		GLOBAL	_io_out8, _io_out16, _io_out32
-		GLOBAL	_io_load_eflags, _io_store_eflags
+		GLOBAL	_io_hlt, _io_cli, _io_sti, _io_stihlt	; 程序中包含的函数名
+		GLOBAL	_io_in8, _io_in16, _io_in32 
+		GLOBAL	_io_out8, _io_out16, _io_out32 
+		GLOBAL	_io_load_eflags, _io_store_eflags 
 		GLOBAL	_load_gdtr, _load_idtr
 		GLOBAL	_asm_inthandler21, _asm_inthandler27, _asm_inthandler2c
 		EXTERN	_inthandler21, _inthandler27, _inthandler2c
 
-[SECTION .text]
+[SECTION .text]		; 目标文件中写了这些之后再写程序
 
 _io_hlt:	; void io_hlt(void);
 		HLT
@@ -69,14 +69,14 @@ _io_out32:	; void io_out32(int port, int data);
 		RET
 
 _io_load_eflags:	; int io_load_eflags(void);
-		PUSHFD		; PUSH EFLAGS という意味
+		PUSHFD		; 指 PUSH EFLAGS 
 		POP		EAX
 		RET
 
 _io_store_eflags:	; void io_store_eflags(int eflags);
 		MOV		EAX,[ESP+4]
 		PUSH	EAX
-		POPFD		; POP EFLAGS という意味
+		POPFD		; 指 POP EFLAGS 
 		RET
 
 _load_gdtr:		; void load_gdtr(int limit, int addr);
