@@ -31,17 +31,17 @@ VRAM	EQU		0x0ff8			; 图像缓冲区的开始地址
 		INT		0x16 			; keyboard BIOS
 		MOV		[LEDS],AL
 
-; PIC关闭一切中断
+; 使PIC不接受一切中断
 ;	根据AT兼容机的规格，如果要初始化PIC
-;	必须在CLI之前进行，否则有时会挂起
-;	随后进行PIC的初始化
+;	这家伙不提前做CLI的话，偶尔会死机
+;	PIC的初始化以后再做
 
 		MOV		AL,0xff
 		OUT		0x21,AL
-		NOP						; 如果连续执行OUT指令，有些机种会无法正常运行
+		NOP						; 据说有如果连续OUT命令不顺利的机种
 		OUT		0xa1,AL
 
-		CLI						; 禁止CPU级别的中断
+		CLI						; 更加CPU水平也中断禁止
 
 ; 设定A20GATE，使CPU能够访问1MB以上的存储器
 
