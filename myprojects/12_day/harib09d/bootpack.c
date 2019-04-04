@@ -83,8 +83,8 @@ void HariMain(void)
 		sheet_refresh(sht_win, 40, 28, 120, 44);
 
 		io_cli();
-		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) + fifo8_status(&timerfifo) == 0
-			 + fifo8_status(&timerfifo2) == 0 + fifo8_status(&timerfifo3) == 0) {
+		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) + fifo8_status(&timerfifo)
+			 + fifo8_status(&timerfifo2) + fifo8_status(&timerfifo3) == 0) {
 			io_sti(); /* 不做HLT */
 		} else {
 			if (fifo8_status(&keyfifo) != 0) {

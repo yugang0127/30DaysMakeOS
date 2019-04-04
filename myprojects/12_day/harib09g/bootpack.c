@@ -83,8 +83,8 @@ void HariMain(void)
 		sheet_refresh(sht_win, 40, 28, 120, 44);
 
 		io_cli();
-		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) + fifo8_status(&timerfifo) == 0
-			 + fifo8_status(&timerfifo2) == 0 + fifo8_status(&timerfifo3) == 0) {
+		if (fifo8_status(&keyfifo) + fifo8_status(&mousefifo) + fifo8_status(&timerfifo)
+			 + fifo8_status(&timerfifo2) + fifo8_status(&timerfifo3) == 0) {
 			io_sti(); /* 不做HLT */
 		} else {
 			if (fifo8_status(&keyfifo) != 0) {
@@ -113,7 +113,6 @@ void HariMain(void)
 					putfonts8_asc(buf_back, binfo->scrnx, 32, 16, COL8_FFFFFF, s);
 					sheet_refresh(sht_back, 32, 16, 32 + 15 * 8, 32);
 					/* 鼠标指针的移动 */
-					boxfill8(binfo->vram, binfo->scrnx, COL8_008484, mx, my, mx + 15, my + 15); /* 隐藏鼠标 */
 					mx += mdec.x;
 					my += mdec.y;
 					if (mx < 0) {
@@ -202,6 +201,8 @@ void make_window8(unsigned char *buf, int xsize, int ysize, char *title)
 			} else if (c == '$') {
 				c = COL8_848484;
 			} else if (c == 'Q') {
+				c = COL8_C6C6C6;
+			} else {
 				c = COL8_FFFFFF;
 			}
 			buf[(5 + y) * xsize + (xsize - 21 + x)] = c;
